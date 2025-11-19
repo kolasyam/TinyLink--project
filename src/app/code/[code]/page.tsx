@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import { ExternalLink, Link as LinkIcon, MousePointerClick, Globe, Clock } from "lucide-react";
 
-type Props = { params: { code: string } };
+type Props = { params: Promise<{ code: string }> };
 
 export default async function CodePage({ params }: Props) {
-  const { code } = params;
+  const { code } = await params;
   const base = process.env.BASE_URL ?? "http://localhost:3000";
   const res = await fetch(`${base}/api/links/${code}`, {
     cache: "no-store",
