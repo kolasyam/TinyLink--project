@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { ExternalLink, Link as LinkIcon, MousePointerClick, Globe, Clock } from "lucide-react";
+import FormatDate from "../../../components/FormatDate";
 
 type Props = { params: Promise<{ code: string }> };
 
@@ -76,9 +77,8 @@ export default async function CodePage({ params }: Props) {
             <div>
               <p className="text-sm text-gray-500">Last Clicked</p>
               <p className="text-lg font-medium text-gray-800">
-                {data.last_clicked
-                  ? new Date(data.last_clicked).toLocaleString("en-IN")
-                  : "Never"}
+                                    <FormatDate value={data.last_clicked} />
+                
               </p>
             </div>
           </div>
@@ -89,7 +89,8 @@ export default async function CodePage({ params }: Props) {
             Created At
           </span>
           <span className="text-gray-800 font-medium">
-            {new Date(data.created_at).toLocaleString("en-IN")}
+            <FormatDate value={data.created_at} />
+            
           </span>
         </div>
       </div>
